@@ -79,6 +79,15 @@ class orthoCams():
             windows.textFieldGrp("oc_sideLowQualityTextField", e = True, tx = general.getAttr(self.infoNode + ".lowQualitySideImage", ""))
             windows.textFieldGrp("oc_back34LowQualityTextField", e = True, tx = general.getAttr(self.infoNode + ".lowQualityRear34Image", ""))
             windows.textFieldGrp("oc_backLowQualityTextField", e = True, tx = general.getAttr(self.infoNode + ".lowQualityRearCenterImage", ""))
+            
+            for selection, val1, val2 in self.cameraApertureSelections:
+                print("Selection {0}, Width {1}, Height {2}".format(selection, val1, val2))
+                currentApertureW = general.getAttr(self.infoNode+".cameraApertureHorizontal")
+                currentApertureH = general.getAttr(self.infoNode+".cameraApertureVertical")
+                
+                if (str(val1) in str(currentApertureW) and str(val2) in str(currentApertureH)):
+                    windows.optionMenu("oc_CameraApertureSelector", e = True , v = selection)
+                    break
         
     def setImagePlaneTextures(self, _type = "high"):
         if _type == "high":
